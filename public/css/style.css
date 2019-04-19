@@ -1,7 +1,12 @@
 #navbgdiv {
-    background-color: lightseagreen
+    background-color: rgb(118, 118, 235)
 }
 
 #nav-mobile {
     margin-left: 20%;
+}
+
+.modal {
+    width: 30%;
+    height: 30%;
 }

@@ -18,13 +18,14 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 app.get("/scrape", function(req, res){
-    axios.get("https://www.nytimes.com/").then(function(response){
+    var baseURL = "https://www.nytimes.com/section/us";
+     axios.get(baseURL).then(function(response){
 
         var $ = cheerio.load(response.data);
-        var result = [];
-        $("div.css-13mho3u.ol.li.div.div.a").each(function(i, element){
-            console.log($(this));
 
+        $("div ol li div div a").each(function(i, element){
+            var result = {};
+            console.log(i)
             result.headline = $(this)
             .children("h2")
             .text();
@@ -33,23 +34,25 @@ app.get("/scrape", function(req, res){
             .children("p")
             .text();
 
-            result.url = $(this)
-            .attr("href")
-            console.log(result);
+            result.url =  $(this)
+            .attr("href");
+
             db.Article.create(result)
-            .then(function(Articles){
-                   console.log(Articles);
+            .then(function(articles){
+                console.log("");
             })
             .catch(function(err){
                  return err;
             });
+
         });
-        res.send("Scrape Complete");
+        res.send("Scraped " );
     });
 });
 
 app.get("/articles", function(req,res){
     article = req.body;
+    console.log(req.body);
     db.Article.find({}).then(function(newsscrapes){
          res.json(newsscrapes);
     });
