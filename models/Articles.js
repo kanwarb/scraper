@@ -1,3 +1,4 @@
+var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var ArticleSchema = new Schema({
@@ -12,7 +13,7 @@ var ArticleSchema = new Schema({
     },
     url: {
         type: String,
-        required: true
+        required: false
     },
     note: {
         type: Schema.Types.ObjectId,
