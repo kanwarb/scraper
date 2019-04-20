@@ -57,7 +57,7 @@ app.get("/scrape", function(req, res){
 app.get("/articles", function(req,res){
     article = req.body;
     console.log(req.body);
-    db.Article.find({}).then(function(newsscrapes){
+    db.Articles.find({}).then(function(newsscrapes){
          res.json(newsscrapes);
     });
 });
