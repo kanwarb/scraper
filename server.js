@@ -1,9 +1,9 @@
 var express = require("express");
 var mongoose = require("mongoose");
-var cheerio = require("cheerio");
-var axios = require("axios");
+// var cheerio = require("cheerio");
+// var axios = require("axios");
 var exphbs = require("express-handlebars");
-var db = require("./models");
+// var db = require("./models");
 
 var path = require("path");
 
