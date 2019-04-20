@@ -45,28 +45,26 @@
         <div class="col s12 m6">
         <div class="card blue-grey darken-1">
             <div class="card-content white-text">
-            <span class="card-title">{{headline}}</span>
-            <p>I{{summary}}</p>
-            <p>{{url}}</p>
+            <span class="card-title">{{this.headline}}</span>
+            <p>I{{this.summary}}</p>
+            <p>{{this.url}}</p>
             </div>
             <div class="card-action">
-            <a id="saveArticle" href="#">Save Article</a>
-            <a id="deleteArticle" href="#">Delete Article</a>
+            <a id="saveNote" href="#" class="modal-trigger waves-effect waves-ligh" data-target="#noteModal" data-id={{this.id}}>Save Article</a>
+            <a id="deleteNote" href="#">Delete Article</a>
             </div>
         </div>
         </div>
     </div>
         </div>
+       
  {{/each}}
    
         <div id="notes"></div>
       
   </div>
 
-  <!-- Modal Trigger -->
-  <!-- <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a> -->
-
-  <!-- Modal Structure -->
+  <!--Scraping Modal Window -->
   <div id="modal1" class="modal">
     <div class="modal-content text-center">
       <input disabled type="text" name="scrape" >
@@ -75,7 +73,15 @@
       <a href="/" class="modal-close waves-effect waves-green btn-flat">close</a>
     </div>
   </div>
-          
+ <div id="noteModal" name="notes" class="modal">
+    <div class="modal-content text-center">
+      <textarea type="text" name="newNote" ></textarea>
+    </div>
+    <div class="modal-footer">
+      <a href="/" class="modal-close waves-effect waves-green btn-flat">close</a>
+    </div>
+  </div>
+ 
 
 </body>
 

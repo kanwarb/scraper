@@ -17,9 +17,15 @@ $(document).ready(function(){
 
 });
 
-$(document).on("click", "#savenote", function() {
+$(document).on("click", "#saveNote", function() {
     // Grab the id associated with the article from the submit button
     var thisId = $(this).attr("data-id");
+
+    $('.modal').modal( {
+      ready: function(modal, trigger) {
+           modal.find('input[name="notes"]').val(trigger.data('id'))
+      }
+  });
   
     // Run a POST request to change the note, using what's entered in the inputs
     $.ajax({
@@ -39,5 +45,5 @@ $(document).on("click", "#savenote", function() {
         // Empty the notes section
         $("#notes").empty();
       });
-  
+    });
   
