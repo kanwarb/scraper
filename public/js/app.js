@@ -7,7 +7,7 @@ $(document).ready(function(){
             $("input[name='scrape']").text(response);
 
         })
-        $('.modal').modal( {
+        $('#modal1').modal( {
             ready: function(modal, trigger) {
                  modal.find('input[name="scrape"]').val(trigger.data('scrape'))
             }
@@ -19,13 +19,14 @@ $(document).ready(function(){
 
 $(document).on("click", "#saveNote", function() {
     // Grab the id associated with the article from the submit button
-    var thisId = $(this).attr("data-id");
 
-    $('.modal').modal( {
-      ready: function(modal, trigger) {
-           modal.find('input[name="notes"]').val(trigger.data('id'))
-      }
-  });
+    var thisId = $(this).attr("data-id");
+        console.log(thisId);
+        $('#noteModal').modal( {
+          ready: function(modal, trigger) {
+               modal.find('textarea[name="newNote"]').val(trigger.data('id'))
+          }
+      });
   
     // Run a POST request to change the note, using what's entered in the inputs
     $.ajax({

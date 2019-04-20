@@ -29,7 +29,7 @@ app.get("/scrape", function(req, res){
           .children("p")
           .text();
 
-          result.url =  $(this)
+          result.url = baseURL + $(this)
           .attr("href");
           
           db.Article.create(result)
@@ -53,3 +53,10 @@ app.get("/articles", function(req,res){
   });
 });
 }
+
+app.post("/articles", function(req,res){
+
+  db.Article.create(req.body).then(function(response){
+      console.log(response);
+  })
+})
