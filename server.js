@@ -41,7 +41,7 @@ app.get("/scrape", function(req, res){
             result.url =  $(this)
             .attr("href");
             
-            db.Article.create(result)
+            db.Articles.create(result)
             .then(function(articles){
             
             })
