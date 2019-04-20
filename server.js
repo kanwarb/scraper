@@ -41,7 +41,7 @@ app.get("/scrape", function(req, res){
             result.url =  $(this)
             .attr("href");
             
-            db.Articles.create(result)
+            db.Article.create(result)
             .then(function(articles){
             
             })
@@ -57,7 +57,7 @@ app.get("/scrape", function(req, res){
 app.get("/articles", function(req,res){
     article = req.body;
     console.log(req.body);
-    db.Articles.find({}).then(function(newsscrapes){
+    db.Article.find({}).then(function(newsscrapes){
          res.json(newsscrapes);
     });
 });

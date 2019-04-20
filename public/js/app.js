@@ -13,5 +13,9 @@ $(document).ready(function(){
                  modal.find('input[name="scrape"]').val(trigger.data('scrape'))
             }
         });
+
     })
 });
+
+
+  
