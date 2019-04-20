@@ -23,11 +23,13 @@ app.get("/scrape", function(req, res){
     
      axios.get(baseURL).then(function(response){
         var articlecount =1;
- 
+        let counter = 1;
         var $ = cheerio.load(response.data);
         $("div ol li div div a").each(function(i, element){
             var result = {};
-            let resultArr = [];
+            console.log($(this, i)
+            .children("h2")
+            .text());
             result.headline = $(this)
             .children("h2")
             .text();
@@ -38,18 +40,17 @@ app.get("/scrape", function(req, res){
 
             result.url =  $(this)
             .attr("href");
-
+            
             db.Article.create(result)
             .then(function(articles){
-               
-                
+            
             })
             .catch(function(err){
                  return err;
             });
            
         });
-       
+       console.log(counter);
     });
 });
 
