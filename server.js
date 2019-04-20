@@ -3,7 +3,7 @@ var mongoose = require("mongoose");
 // var cheerio = require("cheerio");
 // var axios = require("axios");
 var exphbs = require("express-handlebars");
-// var db = require("./models");
+var db = require("./models");
 
 var path = require("path");
 
@@ -26,7 +26,7 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 require("./routes/apiRoutes")(app);
-
+require("./models");
 
 
 app.listen(PORT, function(){

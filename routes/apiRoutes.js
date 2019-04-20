@@ -4,7 +4,7 @@ var axios = require("axios");
 
 module.exports = function(){
 app.get("/", function(req,res){
-  db.Article.find({}).then(function(newsscrapes){
+  db.article.find({}).then(function(newsscrapes){
     res.render("home" , {articles: newsscrapes});
 });
 });
@@ -32,7 +32,7 @@ app.get("/scrape", function(req, res){
           result.url = baseURL + $(this)
           .attr("href");
           
-          db.Article.create(result)
+          db.article.create(result)
           .then(function(articles){
           
           })
@@ -48,15 +48,16 @@ app.get("/scrape", function(req, res){
 app.get("/articles", function(req,res){
   article = req.body;
   console.log(req.body);
-  db.Article.find({}).then(function(newsscrapes){
+  db.article.find({}).then(function(newsscrapes){
        res.render("articles" , {articles: newsscrapes});
   });
 });
 }
 
-app.post("/articles", function(req,res){
-
-  db.Article.create(req.body).then(function(response){
-      console.log(response);
+app.post("/articles/:id", function(req,res){
+  db.note.create(req.body).then(function(response){
+     return db.article.findOneAndUpdate({_id: req.params.id}, { note: response._id}, { new: true});
+  }).then(function(result){
+      res.json(result);
   })
 })

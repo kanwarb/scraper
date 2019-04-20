@@ -17,11 +17,11 @@ $(document).ready(function(){
 
 });
 
-$(document).on("click", "#saveNote", function() {
+$(document).on("click", "#savenote", function() {
     // Grab the id associated with the article from the submit button
 
     var thisId = $(this).attr("data-id");
-        console.log(thisId);
+        alert.log(thisId);
         $('#noteModal').modal( {
           ready: function(modal, trigger) {
                modal.find('textarea[name="newNote"]').val(trigger.data('id'))
