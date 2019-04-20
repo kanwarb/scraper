@@ -19,13 +19,15 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 app.get("/scrape", function(req, res){
     var baseURL = "https://www.nytimes.com/section/us";
+    
+    
      axios.get(baseURL).then(function(response){
-
+        var articlecount =1;
+ 
         var $ = cheerio.load(response.data);
-
         $("div ol li div div a").each(function(i, element){
             var result = {};
-            console.log(i)
+            let resultArr = [];
             result.headline = $(this)
             .children("h2")
             .text();
@@ -39,14 +41,15 @@ app.get("/scrape", function(req, res){
 
             db.Article.create(result)
             .then(function(articles){
-                console.log("");
+               
+                
             })
             .catch(function(err){
                  return err;
             });
-
+           
         });
-        res.send("Scraped " );
+       
     });
 });
 

@@ -1,9 +1,17 @@
 
+
 $(document).ready(function(){
-    var instance = M.Modal.getInstance(elem);
+    $("#scrapenew").on("click", function(){
+       axios.get("/scrape").then(function(response){
+            console.log(response);
+            alert("Scraped data")
+            $("input[name='scrape']").text(response);
 
-    $("#saveScraped").on("click", function(){
-        instance.open();
-    });
-
+        })
+        $('.modal').modal( {
+            ready: function(modal, trigger) {
+                 modal.find('input[name="scrape"]').val(trigger.data('scrape'))
+            }
+        });
+    })
 });
