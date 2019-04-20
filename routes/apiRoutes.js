@@ -1,4 +1,4 @@
-var db = require("../models");
+var db = require("../models/index");
 var cheerio = require("cheerio");
 var axios = require("axios");
 
