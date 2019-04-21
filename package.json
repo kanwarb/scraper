@@ -15,16 +15,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/kanwarb/scraper.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/kanwarb/scraper/issues"
-  },
-  "homepage": "https://github.com/kanwarb/scraper#readme"
+  }
 }
