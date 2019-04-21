@@ -21,7 +21,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 
 
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines" ;
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://heroku_t7q16rb3:ascsqmf28c70hal3ahmbuquio@ds235401.mlab.com:35401/heroku_t7q16rb3/mongoHeadlines" ;
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
