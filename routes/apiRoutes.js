@@ -2,7 +2,7 @@
 var db = require("../models");
 var cheerio = require("cheerio");
 var axios = require("axios");
-var article = require("../models/article.js");
+var article = require("../models/Article.js");
 var note = require("../models/note.js");
 
 module.exports = function(){
