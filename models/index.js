@@ -1,5 +1,5 @@
 'use strict';
 module.exports = {
-    article: require("article"),
-    note: require("note")
+    article: require("../models/article"),
+    note: require("../models/note")
 };
