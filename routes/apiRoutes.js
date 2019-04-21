@@ -1,7 +1,9 @@
 'use strict';
-var db = require("../models/index");
+var db = require("../models");
 var cheerio = require("cheerio");
 var axios = require("axios");
+var article = require("../models/article");
+var note = require("../models/note");
 
 module.exports = function(){
 app.get("/", function(req,res){
