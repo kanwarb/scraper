@@ -2,12 +2,12 @@
 var db = require("../models");
 var cheerio = require("cheerio");
 var axios = require("axios");
-var article = require("../models/article");
-var note = require("../models/note");
+var article = require("../models/article.js");
+var note = require("../models/note.js");
 
 module.exports = function(){
 app.get("/", function(req,res){
-  article.article.find({}).then(function(newsscrapes){
+  article.find({}).then(function(newsscrapes){
     res.render("home" , {articles: newsscrapes});
 });
 });
@@ -35,7 +35,7 @@ app.get("/scrape", function(req, res){
           result.url = baseURL + $(this)
           .attr("href");
           
-          article.article.create(result)
+          article.create(result)
           .then(function(articles){
           
           })
@@ -51,7 +51,7 @@ app.get("/scrape", function(req, res){
 app.get("/articles", function(req,res){
   article = req.body;
   console.log(req.body);
-  article.article.find({}).then(function(newsscrapes){
+  article.find({}).then(function(newsscrapes){
        res.render("articles" , {articles: newsscrapes});
   });
 });
@@ -59,7 +59,7 @@ app.get("/articles", function(req,res){
 
 app.post("/articles/:id", function(req,res){
   note.note.create(req.body).then(function(response){
-     return article.article.findOneAndUpdate({_id: req.params.id}, { note: response._id}, { new: true});
+     return article.findOneAndUpdate({_id: req.params.id}, { note: response._id}, { new: true});
   }).then(function(result){
       res.json(result);
   })

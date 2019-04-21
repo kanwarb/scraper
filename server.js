@@ -26,7 +26,6 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/mongoHea
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 require("./routes/apiRoutes")(app);
-require("./models");
 
 
 app.listen(PORT, function(){
