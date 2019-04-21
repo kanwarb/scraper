@@ -7,7 +7,7 @@ var note = require("../models/note");
 
 module.exports = function(){
 app.get("/", function(req,res){
-  db.article.find({}).then(function(newsscrapes){
+  article.article.find({}).then(function(newsscrapes){
     res.render("home" , {articles: newsscrapes});
 });
 });
@@ -35,7 +35,7 @@ app.get("/scrape", function(req, res){
           result.url = baseURL + $(this)
           .attr("href");
           
-          db.article.create(result)
+          article.article.create(result)
           .then(function(articles){
           
           })
@@ -51,15 +51,15 @@ app.get("/scrape", function(req, res){
 app.get("/articles", function(req,res){
   article = req.body;
   console.log(req.body);
-  db.article.find({}).then(function(newsscrapes){
+  article.article.find({}).then(function(newsscrapes){
        res.render("articles" , {articles: newsscrapes});
   });
 });
 }
 
 app.post("/articles/:id", function(req,res){
-  db.note.create(req.body).then(function(response){
-     return db.article.findOneAndUpdate({_id: req.params.id}, { note: response._id}, { new: true});
+  note.note.create(req.body).then(function(response){
+     return article.article.findOneAndUpdate({_id: req.params.id}, { note: response._id}, { new: true});
   }).then(function(result){
       res.json(result);
   })
