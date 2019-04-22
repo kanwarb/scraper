@@ -52,8 +52,8 @@
             <p>{{this.url}}</p>
             </div>
             <div class="card-action">
-            <a  href="#" class="waves-effect waves-ligh" data-toggle="modal" data-target="#noteModal" data-id={{this._id}}>Save Note</a>
-            <a id="deleteNote" href="#" class="waves-effect waves-ligh" data-target="#noteModal" data-id={{this._id}} data-headline={{this.headline}}</a>Delete Note</a>
+            <a  href="#" class="waves-effect waves-ligh" data-toggle="modal" data-target="#noteModal" data-id={{this._id}}>Add/Delete Note</a>
+            <a id="deletearticle" href="#" class="waves-effect waves-ligh" data-id={{this._id}} </a>Delete Article</a>
             </div>
         </div>
         </div>
@@ -63,22 +63,14 @@
        {{/if}}
    {{/each}}
    
-     <div id="modal1" class="modal">
-      <div class="modal-content text-center">
-        <h4>Number of Articles Scraped</h4>
-        <h4 id="total-number"></h4>
-      </div>
-      <div class="modal-footer">
-        <a href="/" class="modal-close waves-effect waves-green btn-flat">close</a>
-      </div>
-    </div>
+   
   <div id="noteModal" name="notes" class="modal">
       <div class="modal-content text-center">
         <h4 id="headline" ></h4>
         <textarea id="mynote" type="text" name="newNote" ></textarea>
       </div>
       <div class="modal-footer">
-        <a id="savenote" href="/" class="modal-close waves-effect waves-green btn-flat">Save</a>
+        <a id="savenote" href="/savearticle" class="modal-close waves-effect waves-green btn-flat">Save</a>
       </div>
     </div>
  

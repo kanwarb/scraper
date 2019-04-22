@@ -17,9 +17,7 @@ app.get("/scrape", function(req, res){
       var $ = cheerio.load(response.data);
       $("div ol li div div a").each(function(i, element){
           var result = {};
-          console.log($(this, i)
-          .children("h2")
-          .text());
+
           result.headline = $(this)
           .children("h2")
           .text();
@@ -40,13 +38,11 @@ app.get("/scrape", function(req, res){
           });
          
       });
-     console.log(counter);
   });
 });
 
 app.get("/articles", function(req,res){
   article = req.body;
-  console.log(req.body);
   article.find({}).then(function(newsscrapes){
        res.render("articles" , {articles: newsscrapes});
   });
@@ -83,6 +79,20 @@ app.post("/articles/:id", function(req,res){
   }).then(function(result){
       res.json(result);
   })
+});
+
+app.delete("/deletearticle", function (req, res) {
+
+  article.findOneAndRemove({
+      '_id': req.body.id
+  }, function (err, doc) {
+      if (err) {
+          res.json(err);
+      }
+      else {
+          res.json(doc);
+      }
+  });
 });
 
 app.delete("/removenote", function(req,res){
