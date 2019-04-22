@@ -1,3 +1,19 @@
+$(document).on("click", "#savearticle", function(event){
+  event.preventDefault();
+  var articleId = event.target.dataset.name;
+   console.log(event.target.dataset.name);
+  alert("savearticle clicked "+ event.target.dataset.name);
+  axios.put("/savearticle", {
+    data: {
+      id: articleId,
+      saved: true
+    }
+  }).then(function(response) {
+    console.log(response);
+      });
+});
+
+
 
 $(document).ready(function(){
     $("#scrapenew").on("click", function(){
@@ -19,32 +35,22 @@ $(document).ready(function(){
 
 $(document).on("click", "#savenote", function() {
     // Grab the id associated with the article from the submit button
-
     var thisId = $(this).attr("data-id");
-        alert.log(thisId);
         $('#noteModal').modal( {
           ready: function(modal, trigger) {
                modal.find('textarea[name="newNote"]').val(trigger.data('id'))
           }
       });
-  
-    // Run a POST request to change the note, using what's entered in the inputs
-    $.ajax({
-      method: "POST",
-      url: "/articles/" + thisId,
+      var text = $("#mynote").val();
+      alert(text);
+      axios.post("/note", {
       data: {
-        // Value taken from title input
-        title: $("#titleinput").val(),
-        // Value taken from note textarea
-        body: $("#bodyinput").val()
+        id: thisId,
+        body: text
       }
-    })
-      // With that done
-      .then(function(data) {
-        // Log the response
-        console.log(data);
-        // Empty the notes section
-        $("#notes").empty();
+    }).then(function(data) {
+        $("#mynote").empty();
       });
     });
+  
   
