@@ -52,7 +52,7 @@
             <p>{{this.url}}</p>
             </div>
             <div class="card-action">
-            <a  href="#" class="waves-effect waves-ligh" data-toggle="modal" data-target="#noteModal" data-id={{this._id}}>Add/Delete Note</a>
+            <a  href="#" class="waves-effect waves-ligh" data-toggle="modal" data-target="#noteModal"  data-id={{this._id}}>Add/Delete Note</a>
             <a id="deletearticle" href="#" class="waves-effect waves-ligh" data-id={{this._id}} </a>Delete Article</a>
             </div>
         </div>
@@ -61,19 +61,21 @@
         </div>
         
        {{/if}}
-   {{/each}}
+
    
    
-  <div id="noteModal" name="notes" class="modal">
+  <div id="noteModal" name="notes" class="modal h-50 w-50">
       <div class="modal-content text-center">
-        <h4 id="headline" ></h4>
-        <textarea id="mynote" type="text" name="newNote" ></textarea>
+        <p id="headline" data-id={{this._id}}>Note for Article: {{this._id}}</p>
+        <label for="mytitle">Title</label>
+        <input id="mytitle" type="text" />
+        <textarea id="mynote" type="text" name="newNote" >Body</textarea>
       </div>
       <div class="modal-footer">
         <a id="savenote" href="/savearticle" class="modal-close waves-effect waves-green btn-flat">Save</a>
       </div>
     </div>
- 
+    {{/each}}
    
       
   </div>

@@ -72,6 +72,17 @@ app.put("/savearticle", function (req, res) {
   }) 
 });
 
+app.get("/articles/:id", function(req, res) {
+   article.findOne({ _id: req.params.id })
+    .populate("note")
+    .then(function(response) {
+      res.json(response);
+    })
+    .catch(function(err) {
+      res.json(err);
+    });
+});
+
 
 app.post("/articles/:id", function(req,res){
   note.create(req.body).then(function(response){
@@ -79,6 +90,9 @@ app.post("/articles/:id", function(req,res){
   }).then(function(result){
       res.json(result);
   })
+  .catch(function(err) {
+    res.json(err);
+  });
 });
 
 app.delete("/deletearticle", function (req, res) {
@@ -105,7 +119,7 @@ app.delete("/removenote", function(req,res){
   })
 });
 
-app.post("/note", function(req,res){
+app.post("/addnote", function(req,res){
   if(req.body){
     console.log(req.body);
       var newNote = new note(req.body);
@@ -117,6 +131,7 @@ app.post("/note", function(req,res){
 });
 
 app.get("/readnote/:id?", function(req,res){
+  console.log(req.body);
   note.find({
     "_id": req.params.id
   }).then(function(response){

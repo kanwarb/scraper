@@ -25,39 +25,46 @@ $(document).on("click", "#deletearticle", function(event){
 });
 
 $(document).ready(function(){
-    $("#scrapenew").on("click", function(){
+    $("#scrapenew").on("click", function(event){
+      event.preventDefault();
        axios.get("/scrape").then(function(response){
-            $("input[name='scrape']").text(response);
-
+          console.log(response.length);
+            $("#modal1").modal();
         })
-        $('#modal1').modal( {
-            ready: function(modal, trigger) {
-                 modal.find('input[name="scrape"]').val(trigger.data('scrape'))
-            }
-        });
-        location.reload();
+
     })
    
 });
 
-$(document).on("click", "#savenote", function() {
+$(document).on("click", "#savenote", function(event) {
     // Grab the id associated with the article from the submit button
-    var thisId = $(this).attr("data-id");
-        $('#noteModal').modal( {
-          ready: function(modal, trigger) {
-               modal.find('textarea[name="newNote"]').val(trigger.data('id'))
-          }
-      });
-      var text = $("#mynote").val();
-      alert(text);
-      axios.post("/note", {
-      data: {
-        id: thisId,
-        body: text
+    var thisId = event.target.dataset.id;
+    alert(event.target);
+    axios.get("/articles/" + thisId, {
+    }).then(function(data){
+      if (data.note) {
+        $('#noteModal').modal();
+        // Place the title of the note in the title input
+        $("#mytitle").val(data.note.title);
+        // Place the body of the note in the body textarea
+        $("#mynote").val(data.note.body);
+        
       }
-    }).then(function(data) {
-        $("#mynote").empty();
-      });
-    });
-  
+      else{
+        $('#noteModal').modal();
+        var title = $("#mytitle").val();
+        var text = $("#mynote").val();
+        axios.post("/articles/" +thisId, {
+        data: {
+          title: title,
+          body: text
+        }
+      }).then(function(data) {
+          $("#mynote").empty();
+        });
+      }
+    });   
+        
+      
+});
   
